@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Scheduler</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- WhatsApp Automation Limitation Notice -->
+    <div id="waNotice" class="wa-notice">
+        <i class="fas fa-info-circle"></i>
+        <span>
+            <strong>Note:</strong> For privacy and security, WhatsApp does <u>not</u> allow any website to send messages automatically. When a message is due, this app opens WhatsApp with your message pre-filled. <b>You must click the <i>Send</i> button in WhatsApp yourself.</b>
+        </span>
+        <button id="waNoticeClose" title="Dismiss">&times;</button>
+    </div>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-whatsapp"></i> WhatsApp Scheduler</h1>
+            <div class="stats">
+                <span id="totalMessages" class="stat">Total: 0</span>
+                <span id="pendingMessages" class="stat">Pending: 0</span>
+                <span id="sentMessages" class="stat">Sent: 0</span>
+            </div>
+        </header>
+
+        <div class="form-container">
+            <form id="scheduleForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Contact Name" required>
+                    <input type="tel" id="phone" placeholder="Phone (with country code)" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="Message to send" required rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="date" required>
+                    <input type="time" id="time" required>
+                    <button type="submit"><i class="fas fa-plus"></i> Schedule Message</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="controls">
+            <button id="clearAll" class="btn-danger"><i class="fas fa-trash"></i> Clear All</button>
+            <button id="exportData" class="btn-secondary"><i class="fas fa-download"></i> Export</button>
+            <label for="importFile" class="btn-secondary"><i class="fas fa-upload"></i> Import</label>
+            <input type="file" id="importFile" accept=".json" style="display: none;">
+        </div>
+
+        <div class="table-container">
+            <table id="scheduleTable">
+                <thead>
+                    <tr>
+                        <th>Contact</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <th>Scheduled Time</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="emptyState" class="empty-state">
+                <i class="far fa-calendar-alt"></i>
+                <p>No scheduled messages yet</p>
+                <small>Add your first scheduled message above</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <span id="toastMessage"></span>
+            <button id="toastClose">&times;</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
